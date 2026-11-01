@@ -400,11 +400,20 @@ function handleGestureResult(data) {
       state.lastGesture = gesture;
     }
 
-    // Auto-speak dynamic gestures
-    if (type === 'dynamic' && displayTranslation && displayTranslation !== state.lastSpoken) {
-      speakText(displayTranslation, state.currentLang);
-      state.lastSpoken = displayTranslation;
-    }
+    
+// Auto-speak recognized gestures without repeating every frame
+if (
+  gesture !== 'UNKNOWN' &&
+  displayTranslation &&
+  displayTranslation !== '-' &&
+  (gesture !== state.lastSpokenGesture ||
+   state.currentLang !== state.lastSpokenLang)
+) {
+  state.lastSpokenGesture = gesture;
+  state.lastSpokenLang = state.currentLang;
+  speakText(displayTranslation, state.currentLang);
+}
+
   } else {
     $('detected-gesture').textContent = '-';
     $('confidence-bar').style.width = '0%';
