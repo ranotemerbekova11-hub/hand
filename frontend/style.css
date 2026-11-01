@@ -1389,7 +1389,7 @@ audio {
 
 @media (min-width: 1200px) {
   .workspace-section .detect-layout {
-    grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.92fr) minmax(340px, 0.92fr);
+ grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
