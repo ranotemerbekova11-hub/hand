@@ -404,7 +404,6 @@ function handleGestureResult(data) {
     if (type === 'dynamic' && displayTranslation && displayTranslation !== state.lastSpoken) {
       speakText(displayTranslation, state.currentLang);
       state.lastSpoken = displayTranslation;
-      setTimeout(() => { state.lastSpoken = null; }, 3000);
     }
   } else {
     $('detected-gesture').textContent = '-';
