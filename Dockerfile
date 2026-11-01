@@ -20,4 +20,6 @@ COPY models/.gitkeep ./models/.gitkeep
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python -m backend.download_models || true; exec uvicorn backend.server:app --host 0.0.0.0 --port 8000 --proxy-headers"]
+RUN python -m backend.download_models
+
+CMD ["uvicorn", "backend.server:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
